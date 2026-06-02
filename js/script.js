@@ -52,17 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===== Scroll Reveal Animation =====
+    // ===== Scroll Reveal Animation (Weave Effect) =====
     const revealElements = () => {
         const elements = document.querySelectorAll(
             '.section-label, .section-title, .about-desc, .about-stats, ' +
             '.service-row, .work-card, .case-study-text, .case-study-visual, ' +
-            '.contact-left, .contact-right, .footer-top'
+            '.contact-item, .contact-form, .footer-top'
         );
 
-        elements.forEach(el => {
+        elements.forEach((el, index) => {
             if (!el.classList.contains('reveal')) {
                 el.classList.add('reveal');
+                // Alternating directions for weave effect
+                if (index % 3 === 0) {
+                    el.classList.add('slide-left');
+                } else if (index % 3 === 1) {
+                    el.classList.add('slide-right');
+                } else {
+                    el.classList.add('slide-up');
+                }
             }
         });
 
