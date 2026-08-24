@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #04211b;
+  --color-pine: #082a23;
+  --color-panel: #0d352c;
+  --color-panel2: #144439;
+  --color-bone: #ece7d8;
+  --color-mist: #93b8ab;
+  --color-jade: #3fd9a2;
+  --color-copper: #e8a24b;
+  --color-thread: rgba(236, 231, 216, 0.12);
+
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ---------- base ---------- */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  background-color: var(--color-pine);
+  color: var(--color-bone);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-panel2);
+  border: 2px solid var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-copper);
+}
+
+/* ---------- woven textures ---------- */
+
+.weave-grid {
+  background-image: linear-gradient(to right,
+      rgba(236, 231, 216, 0.05) 1px,
+      transparent 1px),
+    linear-gradient(to bottom, rgba(236, 231, 216, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+.weave-cross {
+  background-image: repeating-linear-gradient(45deg,
+      rgba(63, 217, 162, 0.09) 0 1px,
+      transparent 1px 8px),
+    repeating-linear-gradient(-45deg,
+      rgba(232, 162, 75, 0.08) 0 1px,
+      transparent 1px 8px);
+}
+
+.noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* notched corners — a thread cut, the house shape */
+.notch {
+  clip-path: polygon(0 0,
+      calc(100% - 16px) 0,
+      100% 16px,
+      100% 100%,
+      16px 100%,
+      0 calc(100% - 16px));
+}
+
+.notch-sm {
+  clip-path: polygon(0 0,
+      calc(100% - 9px) 0,
+      100% 9px,
+      100% 100%,
+      9px 100%,
+      0 calc(100% - 9px));
+}
+
+/* stitch dashed rule — reads like a seam */
+.stitch-x {
+  background-image: repeating-linear-gradient(90deg,
+      currentColor 0 9px,
+      transparent 9px 16px);
+  background-size: 100% 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 center;
+}
+
+/* underline that sews itself in on hover */
+.link-stitch {
+  background-image: repeating-linear-gradient(90deg,
+      var(--color-copper) 0 8px,
+      transparent 8px 14px);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 3px;
+}
+
+.link-stitch:hover,
+.group:hover .link-stitch {
+  background-size: 100% 2px;
+}
+
+/* ---------- reveal on scroll ---------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--rd, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* line-mask reveal for display type */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.mask-line>span {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--rd, 0ms);
+}
+
+.is-in .mask-line>span {
+  transform: none;
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes draw-thread {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.thread-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-thread 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes marquee-x {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1) translateY(0);
+  }
+
+  to {
+    transform: scale(1.08) translateY(-1.5%);
+  }
+}
+
+.kenburns {
+  animation: kenburns 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes floaty {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-11px);
+  }
+}
+
+.floaty {
+  animation: floaty 6.5s ease-in-out infinite;
+}
+
+@keyframes weft-glow {
+
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.weft-glow {
+  animation: weft-glow 3.4s ease-in-out infinite;
+}
+
+@keyframes blink-caret {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret-blink {
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes soft-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(63, 217, 162, 0.55);
+  }
+
+  70% {
+    box-shadow: 0 0 0 9px rgba(63, 217, 162, 0);
+  }
+}
+
+.pulse-dot {
+  animation: soft-pulse 2.4s ease-out infinite;
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.scroll-line-anim {
+  animation: scroll-line 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* ---------- accordion ---------- */
+
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.acc-body.open {
+  grid-template-rows: 1fr;
+}
+
+.acc-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ---------- form fields ---------- */
+
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-thread);
+  padding: 0.65rem 0;
+  color: var(--color-bone);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  outline: none;
+  border-radius: 0;
+}
+
+.field::placeholder {
+  color: rgba(147, 184, 171, 0.5);
+}
+
+.field:focus {
+  border-color: var(--color-jade);
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mask-line>span {
+    transform: none;
+  }
+
+  .thread-draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .kenburns,
+  .floaty,
+  .weft-glow,
+  .scroll-line-anim {
+    animation: none;
+  }
+}
