@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useInView, usePrefersReducedMotion } from "../lib/hooks";
-import { ArrowIcon, Reveal, SectionTag } from "./shared";
+import { ArrowIcon, Reveal } from "./shared";
 
 const WARP_XS = Array.from({ length: 13 }, (_, i) => 52.5 + i * 37);
 const WEFT_YS = [130, 195, 260, 325, 390, 455, 520];
