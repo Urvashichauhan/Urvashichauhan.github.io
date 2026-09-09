@@ -8,16 +8,16 @@ export const NAV_LINKS = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "services", label: "Services" },
-    { id: "work", label: "Work" },
+    // { id: "work", label: "Work" },
     { id: "contact", label: "Contact" },
 ] as const;
 
 export const SECTION_IDS = NAV_LINKS.map((l) => l.id);
 
 export const STATS = [
-    { value: 150, suffix: "+", label: "Projects Delivered" },
-    { value: 50, suffix: "+", label: "Happy Clients" },
-    { value: 10, suffix: "+", label: "Years Experience" },
+    { value: 10, suffix: "+", label: "Projects Delivered" },
+    { value: 5, suffix: "+", label: "Happy Clients" },
+    { value: 1, suffix: "+", label: "Years Experience" },
 ];
 
 const stroke = {

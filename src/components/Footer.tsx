@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FOOTER_SERVICES, NAV_LINKS, SOCIALS, WeaveMark } from "../lib/data";
+import { FOOTER_SERVICES, NAV_LINKS, WeaveMark } from "../lib/data";
 import { ArrowIcon } from "./shared";
 
 function WatermarkMarquee() {
@@ -59,7 +59,7 @@ export default function Footer() {
                             Weaving innovation into technology to empower businesses
                             worldwide.
                         </p>
-                        <div className="mt-7 flex gap-3">
+                        {/* <div className="mt-7 flex gap-3">
                             {SOCIALS.map((s) => (
                                 <a
                                     key={s.label}
@@ -70,7 +70,7 @@ export default function Footer() {
                                     {s.icon}
                                 </a>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="lg:col-span-2">
@@ -149,7 +149,7 @@ export default function Footer() {
 
                 <div className="mt-14 flex flex-wrap items-center justify-between gap-5 border-t border-thread py-7">
                     <p className="font-mono text-[11px] tracking-[0.14em] text-mist">
-                        © 2025 Innoweave Tech. All rights reserved.
+                        © 2026 Innoweave Tech. All rights reserved.
                     </p>
                     <p className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-mist/60 md:block">
                         Warp · Weft · System

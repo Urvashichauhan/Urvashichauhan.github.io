@@ -1,37 +1,36 @@
-import { STATS } from "../lib/data";
-import { useCountUp, useInView } from "../lib/hooks";
+// import { STATS } from "../lib/data";
 import { Reveal, SectionTag } from "./shared";
 
-function StatItem({
-    value,
-    suffix,
-    label,
-    delay,
-}: {
-    value: number;
-    suffix: string;
-    label: string;
-    delay: number;
-}) {
-    const { ref, inView } = useInView<HTMLDivElement>(0.4);
-    const count = useCountUp(value, inView);
-    return (
-        <div
-            ref={ref}
-            data-reveal
-            className={`${inView ? "is-in" : ""}`}
-            style={{ "--rd": `${delay}ms` } as React.CSSProperties}
-        >
-            <div className="font-display text-5xl font-bold leading-none text-bone md:text-6xl">
-                {count}
-                <span className="text-copper">{suffix}</span>
-            </div>
-            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
-                {label}
-            </p>
-        </div>
-    );
-}
+// function StatItem({
+//     value,
+//     suffix,
+//     label,
+//     delay,
+// }: {
+//     value: number;
+//     suffix: string;
+//     label: string;
+//     delay: number;
+// }) {
+//     const { ref, inView } = useInView<HTMLDivElement>(0.4);
+//     const count = useCountUp(value, inView);
+//     return (
+//         <div
+//             ref={ref}
+//             data-reveal
+//             className={`${inView ? "is-in" : ""}`}
+//             style={{ "--rd": `${delay}ms` } as React.CSSProperties}
+//         >
+//             <div className="font-display text-5xl font-bold leading-none text-bone md:text-6xl">
+//                 {count}
+//                 <span className="text-copper">{suffix}</span>
+//             </div>
+//             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
+//                 {label}
+//             </p>
+//         </div>
+//     );
+// }
 
 const WEAVE_ROWS = [
     {
@@ -136,11 +135,11 @@ export default function About() {
                             </p>
                         </Reveal>
 
-                        <div className="mt-16 grid grid-cols-1 gap-10 border-t border-thread pt-10 sm:grid-cols-3 sm:gap-6">
+                        {/* <div className="mt-16 grid grid-cols-1 gap-10 border-t border-thread pt-10 sm:grid-cols-3 sm:gap-6">
                             {STATS.map((s, i) => (
                                 <StatItem key={s.label} {...s} delay={i * 130} />
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
