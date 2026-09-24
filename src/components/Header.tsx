@@ -23,10 +23,10 @@ export default function Header() {
                     }`}
             >
                 <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-                    <a href="#home" className="group flex items-center gap-3" aria-label="Innoweave Tech — home">
+                    <a href="#home" className="group flex items-center gap-3" aria-label="InnoweveTech — home">
                         <WeaveMark className="h-10 w-10 transition-transform duration-500 group-hover:rotate-90" />
                         <span className="font-display text-xl font-bold tracking-tight text-bone">
-                            Innoweave<span className="text-copper">Tech</span>
+                            Innoweve<span className="text-copper">Tech</span>
                         </span>
                     </a>
 

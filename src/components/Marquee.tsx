@@ -21,7 +21,7 @@ export default function Marquee() {
     return (
         <section
             className="marquee relative overflow-hidden border-y border-thread bg-ink/70 py-5"
-            aria-label="Disciplines ticker"
+            aria-label="Capabilities ticker"
         >
             <div className="weave-cross pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
             <div className="marquee-track relative">

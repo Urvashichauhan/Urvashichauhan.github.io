@@ -1,130 +1,109 @@
 import type { CSSProperties } from "react";
+import { HERO_CAPABILITIES } from "../lib/data";
 import { useInView, usePrefersReducedMotion } from "../lib/hooks";
 import { ArrowIcon, Reveal } from "./shared";
 
-const WARP_XS = Array.from({ length: 13 }, (_, i) => 52.5 + i * 37);
-const WEFT_YS = [130, 195, 260, 325, 390, 455, 520];
+/* ---------- hero workflow transformation visual ---------- */
 
-function weavePath(y: number) {
-    let d = `M 34 ${y}`;
-    for (let x = 34; x < 500; x += 37) {
-        d += " q 9.25 -11 18.5 0 q 9.25 11 18.5 0";
-    }
-    return d;
-}
+const TRANSFORMS = [
+    { from: "Excel", to: "Dashboard", color: "jade" },
+    { from: "WhatsApp", to: "Customer Management", color: "copper" },
+    { from: "Manual Orders", to: "Order System", color: "jade" },
+    { from: "Phone Calls", to: "Automated Workflow", color: "copper" },
+];
 
-function Loom() {
+function WorkflowVisual() {
+    const { ref, inView } = useInView<HTMLDivElement>(0.2);
     const reduced = usePrefersReducedMotion();
-    const shuttlePath = weavePath(325);
 
     return (
-        <div className="relative mx-auto w-full max-w-[560px]">
-            {/* floating data chips */}
-            <div className="floaty absolute -right-3 top-[16%] z-10 hidden items-center gap-2 border border-thread bg-panel/90 px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-jade notch-sm sm:flex">
+        <div ref={ref} className="relative mx-auto w-full max-w-[540px]">
+            {/* ambient glow */}
+            <div
+                className="glow-pulse pointer-events-none absolute -right-12 top-1/4 h-48 w-48 rounded-full bg-jade/20"
+                aria-hidden="true"
+            />
+            <div
+                className="glow-pulse pointer-events-none absolute -left-8 bottom-1/4 h-40 w-40 rounded-full bg-copper/15"
+                style={{ animationDelay: "2s" }}
+                aria-hidden="true"
+            />
+
+            {/* frame */}
+            <div className="notch relative border border-thread bg-ink/80 p-6 md:p-8">
+                {/* window header */}
+                <div className="mb-6 flex items-center gap-2 border-b border-thread pb-4">
+                    <span className="h-2.5 w-2.5 rounded-full bg-copper" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-jade" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-bone/50" />
+                    <span className="ml-3 font-mono text-[11px] tracking-[0.14em] text-mist">
+                        workflow · transformation
+                    </span>
+                </div>
+
+                {/* transformation rows */}
+                <div className="space-y-4">
+                    {TRANSFORMS.map((t, i) => (
+                        <div
+                            key={t.from}
+                            className={`flex items-center gap-3 ${inView && !reduced ? "node-enter" : inView ? "" : "opacity-0"}`}
+                            style={{ animationDelay: `${200 + i * 180}ms` } as CSSProperties}
+                        >
+                            {/* from */}
+                            <div className="flex min-w-[110px] items-center gap-2 border border-thread bg-panel/60 px-3 py-2.5 sm:min-w-[130px]">
+                                <span className="h-1.5 w-1.5 rounded-full bg-red-400/70" />
+                                <span className="font-mono text-[11px] text-bone/70 sm:text-xs">{t.from}</span>
+                            </div>
+
+                            {/* arrow */}
+                            <div className="flex items-center gap-1">
+                                <span className="h-px w-4 bg-thread sm:w-8" />
+                                <svg viewBox="0 0 12 12" className={`h-3 w-3 text-${t.color}`} fill="currentColor" aria-hidden="true">
+                                    <polygon points="0,2 12,6 0,10" />
+                                </svg>
+                            </div>
+
+                            {/* to */}
+                            <div className={`flex flex-1 items-center gap-2 border px-3 py-2.5 ${t.color === "jade"
+                                ? "border-jade/30 bg-jade/8"
+                                : "border-copper/30 bg-copper/8"
+                                }`}>
+                                <span className={`pulse-dot h-1.5 w-1.5 rounded-full ${t.color === "jade" ? "bg-jade" : "bg-copper"
+                                    }`} />
+                                <span className={`font-mono text-[11px] sm:text-xs ${t.color === "jade" ? "text-jade" : "text-copper"
+                                    }`}>
+                                    {t.to}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* bottom status bar */}
+                <div className="mt-6 flex items-center justify-between border-t border-thread pt-4">
+                    <div className="flex items-center gap-2.5 text-jade">
+                        <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-jade" />
+                        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em]">
+                            System Active
+                        </span>
+                    </div>
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-mist">
+                        4 workflows digitized
+                    </span>
+                </div>
+            </div>
+
+            {/* floating chips */}
+            <div className="floaty absolute -right-3 top-[12%] z-10 hidden items-center gap-2 border border-thread bg-panel/90 px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-jade notch-sm sm:flex">
                 <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-jade" />
-                AI ANALYTICS — LIVE
+                CUSTOM SOFTWARE
             </div>
             <div
-                className="floaty absolute -left-4 top-[48%] z-10 hidden border border-thread bg-panel/90 px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-bone/85 notch-sm sm:block"
-                style={{ animationDelay: "1.2s" }}
+                className="floaty absolute -left-4 bottom-[12%] z-10 hidden border border-copper/40 bg-panel/90 px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-copper notch-sm sm:block"
+                style={{ animationDelay: "1.8s" }}
             >
-                99.9% UPTIME
+                BUILT FOR YOUR BUSINESS
             </div>
-            <div
-                className="floaty absolute -bottom-4 right-[10%] z-10 hidden border border-copper/40 bg-panel/90 px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-copper notch-sm sm:block"
-                style={{ animationDelay: "2.1s" }}
-            >
-                PREDICTIVE INSIGHTS
-            </div>
-
-            <svg
-                viewBox="0 0 560 600"
-                className="w-full"
-                role="img"
-                aria-label="Animated loom: engineering warp threads interlaced with intelligent weft threads"
-            >
-                {/* frame + corner ticks */}
-                <rect x="16" y="16" width="528" height="568" fill="rgba(4,33,27,0.55)" stroke="var(--color-thread)" />
-                {[
-                    "M16 40 V16 H40",
-                    "M520 16 H544 V40",
-                    "M544 560 V584 H520",
-                    "M40 584 H16 V560",
-                ].map((d) => (
-                    <path key={d} d={d} fill="none" stroke="var(--color-copper)" strokeWidth="2" />
-                ))}
-
-                {/* corner labels */}
-                <text x="30" y="44" fill="var(--color-mist)" fontSize="10" letterSpacing="3" fontFamily="JetBrains Mono, monospace">
-                    FIG. 01 — THE LOOM
-                </text>
-                <text x="530" y="44" fill="var(--color-mist)" fontSize="10" letterSpacing="3" textAnchor="end" fontFamily="JetBrains Mono, monospace">
-                    WEFT / AI
-                </text>
-                <text x="30" y="566" fill="var(--color-mist)" fontSize="10" letterSpacing="3" fontFamily="JetBrains Mono, monospace">
-                    WARP / ENGINEERING
-                </text>
-                <text x="530" y="566" fill="var(--color-copper)" fontSize="10" letterSpacing="3" textAnchor="end" fontFamily="JetBrains Mono, monospace">
-                    OUTPUT / YOUR SYSTEM
-                </text>
-
-                {/* warp threads */}
-                {WARP_XS.map((x, i) => (
-                    <line
-                        key={x}
-                        x1={x}
-                        y1={64}
-                        x2={x}
-                        y2={536}
-                        pathLength={1}
-                        className="thread-draw"
-                        style={{ animationDelay: `${i * 65}ms` } as CSSProperties}
-                        stroke="var(--color-jade)"
-                        strokeWidth={i % 3 === 0 ? 1.6 : 1}
-                        opacity={i % 3 === 0 ? 0.55 : 0.3}
-                    />
-                ))}
-
-                {/* weft threads */}
-                {WEFT_YS.map((y, i) => (
-                    <path
-                        key={y}
-                        d={weavePath(y)}
-                        pathLength={1}
-                        className="thread-draw"
-                        style={{ animationDelay: `${900 + i * 210}ms` } as CSSProperties}
-                        fill="none"
-                        stroke={i % 2 === 0 ? "var(--color-copper)" : "var(--color-bone)"}
-                        strokeWidth={i % 2 === 0 ? 1.8 : 1.2}
-                        opacity={i % 2 === 0 ? 0.85 : 0.4}
-                    />
-                ))}
-
-                {/* glowing active row */}
-                <path
-                    d={shuttlePath}
-                    className="weft-glow"
-                    fill="none"
-                    stroke="var(--color-jade)"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                    filter="blur(4px)"
-                    opacity="0.2"
-                />
-
-                {/* shuttle riding the middle thread */}
-                {!reduced && (
-                    <g>
-                        <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
-                            <mpath href="#shuttle-path" />
-                        </animateMotion>
-                        <rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="var(--color-copper)" />
-                        <rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="none" stroke="var(--color-ink)" strokeWidth="1.5" />
-                        <circle r="2.6" fill="var(--color-ink)" />
-                    </g>
-                )}
-                <path id="shuttle-path" d={shuttlePath} fill="none" stroke="none" />
-            </svg>
         </div>
     );
 }
@@ -152,24 +131,24 @@ export default function Hero() {
                         <div className="notch-sm inline-flex items-center gap-3 border border-copper/40 bg-copper/10 px-4 py-2">
                             <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-jade" />
                             <span className="font-mono text-[11px] font-medium uppercase tracking-[0.3em] text-copper">
-                                Systems That Think
+                                Custom Software Development
                             </span>
                         </div>
                     </Reveal>
 
                     <div ref={ref} className={`mt-8 ${inView ? "is-in" : ""}`}>
-                        <h1 className="font-display text-[clamp(2.6rem,6.3vw,5.3rem)] font-bold leading-[1.03] tracking-tight text-bone">
+                        <h1 className="font-display text-[clamp(2.4rem,5.8vw,4.8rem)] font-bold leading-[1.06] tracking-tight text-bone">
                             <span className="mask-line">
-                                <span style={{ "--rd": "80ms" } as CSSProperties}>We Build</span>
+                                <span style={{ "--rd": "80ms" } as CSSProperties}>We Build Software</span>
                             </span>
                             <span className="mask-line">
                                 <span style={{ "--rd": "220ms" } as CSSProperties}>
-                                    <em className="not-italic text-jade">Intelligent</em> Systems
+                                    <em className="not-italic text-jade">Around</em> Your
                                 </span>
                             </span>
                             <span className="mask-line">
                                 <span style={{ "--rd": "360ms" } as CSSProperties}>
-                                    <span className="link-stitch text-copper">For Your Business.</span>
+                                    <span className="link-stitch text-copper">Business.</span>
                                 </span>
                             </span>
                         </h1>
@@ -177,9 +156,9 @@ export default function Hero() {
 
                     <Reveal delay={350}>
                         <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist">
-                            We design and develop custom software systems with AI integration —
-                            from school management platforms with AI-driven analytics to
-                            enterprise-grade solutions that scale.
+                            From business dashboards and management systems to mobile apps and
+                            automation — InnoweveTech turns manual workflows into software
+                            designed around the way your business works.
                         </p>
                     </Reveal>
 
@@ -189,33 +168,30 @@ export default function Hero() {
                                 href="#contact"
                                 className="group notch-sm inline-flex items-center gap-3 bg-copper px-7 py-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors duration-300 hover:bg-bone"
                             >
-                                Get Started
+                                Start a Project
                                 <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                             </a>
                             <a
-                                href="#work"
+                                href="#solutions"
                                 className="notch-sm inline-flex items-center gap-3 border border-thread px-7 py-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-bone transition-colors duration-300 hover:border-jade hover:text-jade"
                             >
-                                View Our Work
+                                See What We Build
                             </a>
                         </div>
                     </Reveal>
 
                     <Reveal delay={620}>
                         <div className="mt-12 border-t border-thread pt-6">
-                            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-mist/80">
-                                Trusted by organizations across
-                            </p>
-                            <div className="mt-3 flex flex-wrap gap-2.5">
-                                {["Education", "Healthcare", "Enterprise"].map((sector) => (
+                            <div className="flex flex-wrap gap-2.5">
+                                {HERO_CAPABILITIES.map((cap) => (
                                     <span
-                                        key={sector}
+                                        key={cap}
                                         className="notch-sm flex items-center gap-2 border border-thread bg-panel/60 px-3.5 py-1.5 font-mono text-xs text-bone/85 transition-colors duration-300 hover:border-jade/60 hover:text-jade"
                                     >
                                         <svg viewBox="0 0 8 8" className="h-1.5 w-1.5" aria-hidden="true">
                                             <rect x="1.5" y="1.5" width="5" height="5" transform="rotate(45 4 4)" fill="var(--color-jade)" />
                                         </svg>
-                                        {sector}
+                                        {cap}
                                     </span>
                                 ))}
                             </div>
@@ -225,7 +201,7 @@ export default function Hero() {
 
                 <div className="lg:col-span-6">
                     <Reveal delay={250}>
-                        <Loom />
+                        <WorkflowVisual />
                     </Reveal>
                 </div>
             </div>

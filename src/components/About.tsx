@@ -1,145 +1,114 @@
-// import { STATS } from "../lib/data";
-import { Reveal, SectionTag } from "./shared";
+import { WHY_US } from "../lib/data";
+import { ArrowIcon, Reveal, SectionTag } from "./shared";
 
-// function StatItem({
-//     value,
-//     suffix,
-//     label,
-//     delay,
-// }: {
-//     value: number;
-//     suffix: string;
-//     label: string;
-//     delay: number;
-// }) {
-//     const { ref, inView } = useInView<HTMLDivElement>(0.4);
-//     const count = useCountUp(value, inView);
-//     return (
-//         <div
-//             ref={ref}
-//             data-reveal
-//             className={`${inView ? "is-in" : ""}`}
-//             style={{ "--rd": `${delay}ms` } as React.CSSProperties}
-//         >
-//             <div className="font-display text-5xl font-bold leading-none text-bone md:text-6xl">
-//                 {count}
-//                 <span className="text-copper">{suffix}</span>
-//             </div>
-//             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
-//                 {label}
-//             </p>
-//         </div>
-//     );
-// }
-
-const WEAVE_ROWS = [
-    {
-        tag: "Warp",
-        text: "Deep engineering expertise",
-        glyph: <path d="M6 3v18M12 3v18M18 3v18" stroke="var(--color-jade)" strokeWidth="2" />,
-    },
-    {
-        tag: "Weft",
-        text: "Artificial intelligence",
-        glyph: <path d="M3 8h18M3 16h18" stroke="var(--color-copper)" strokeWidth="2" />,
-    },
-    {
-        tag: "Fabric",
-        text: "Systems that think, adapt & evolve",
-        glyph: (
-            <>
-                <path d="M6 3v18M12 3v18M18 3v18" stroke="var(--color-jade)" strokeWidth="2" />
-                <path d="M3 8h18M3 16h18" stroke="var(--color-copper)" strokeWidth="2" />
-                <path d="M12 5v6M6 13v6M18 13v6" stroke="var(--color-jade)" strokeWidth="2" />
-            </>
-        ),
-    },
+const WHY_US_ICONS = [
+    // Workflow
+    <svg key="1" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" />
+        <rect x="14" y="3" width="7" height="7" />
+        <rect x="14" y="14" width="7" height="7" />
+        <rect x="3" y="14" width="7" height="7" />
+        <path d="M10 6.5h4M17.5 10v4M14 17.5h-4M6.5 14v-4" />
+    </svg>,
+    // Scalable
+    <svg key="2" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+        <path d="M12 12v9M8 17l4-4 4 4" />
+    </svg>,
+    // Web + Mobile
+    <svg key="3" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>,
+    // Clear Communication
+    <svg key="4" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <path d="M8 9h8M8 13h5" />
+    </svg>,
+    // Long-Term Support
+    <svg key="5" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+    </svg>,
+    // Practical Technology
+    <svg key="6" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+        <line x1="14" y1="4" x2="10" y2="20" />
+    </svg>,
 ];
 
 export default function About() {
     return (
         <section id="about" className="relative py-28 md:py-36">
-            <div className="weave-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
+            <div className="weave-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
             <div className="relative mx-auto max-w-7xl px-5 md:px-8">
-                <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
+                <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
                     {/* sticky left column */}
                     <div className="lg:col-span-5">
                         <div className="lg:sticky lg:top-28">
                             <Reveal>
-                                <SectionTag index="01">About Us</SectionTag>
+                                <SectionTag>Why InnoweveTech</SectionTag>
                                 <h2 className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-bone md:text-5xl">
-                                    We{" "}
-                                    <span className="relative inline-block text-copper">
-                                        weave
-                                        <svg
-                                            viewBox="0 0 120 12"
-                                            className="absolute -bottom-2 left-0 w-full"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M2 8 q 10 -7 20 0 t 20 0 t 20 0 t 20 0 t 20 0"
-                                                fill="none"
-                                                stroke="var(--color-copper)"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                opacity="0.7"
-                                            />
-                                        </svg>
-                                    </span>{" "}
-                                    innovation into every system we build.
+                                    Software built around{" "}
+                                    <span className="text-jade">how your team actually works.</span>
                                 </h2>
                             </Reveal>
 
-                            <Reveal delay={180}>
-                                <div className="mt-12 border border-thread bg-panel/40">
-                                    <p className="border-b border-thread px-5 py-3 font-mono text-[10px] uppercase tracking-[0.28em] text-mist">
-                                        Anatomy of the weave
-                                    </p>
-                                    {WEAVE_ROWS.map((row, i) => (
-                                        <div
-                                            key={row.tag}
-                                            className={`group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-panel ${i > 0 ? "border-t border-thread" : ""
-                                                }`}
-                                        >
-                                            <svg viewBox="0 0 24 24" className="h-9 w-9 shrink-0" fill="none" aria-hidden="true">
-                                                {row.glyph}
-                                            </svg>
-                                            <div>
-                                                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-copper">
-                                                    {row.tag}
-                                                </p>
-                                                <p className="mt-0.5 text-sm font-medium text-bone/90">{row.text}</p>
-                                            </div>
-                                        </div>
-                                    ))}
+                            <Reveal delay={120}>
+                                <p className="mt-6 text-base font-light leading-relaxed text-mist">
+                                    Most custom software projects fail because developers jump to code before understanding the business. We map the physical and digital bottlenecks first, then build the exact system needed.
+                                </p>
+                            </Reveal>
+
+                            <Reveal delay={200}>
+                                <div className="mt-8 border-t border-thread pt-6">
+                                    <a
+                                        href="#contact"
+                                        className="inline-flex items-center gap-2 border border-jade bg-jade/10 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-jade transition-colors hover:bg-jade hover:text-ink"
+                                    >
+                                        Schedule Discovery Call
+                                        <ArrowIcon className="h-3.5 w-3.5" />
+                                    </a>
                                 </div>
                             </Reveal>
                         </div>
                     </div>
 
-                    {/* right column */}
-                    <div className="lg:col-span-7 lg:pl-10">
-                        <Reveal>
-                            <p className="text-xl font-light leading-relaxed text-bone/90 first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.85] first-letter:text-copper md:text-2xl">
-                                Innoweave Tech is a technology company specializing in building
-                                custom software systems for diverse clients. We combine deep
-                                engineering expertise with artificial intelligence to create
-                                solutions that don't just work — they think, adapt, and evolve.
-                            </p>
-                        </Reveal>
-                        <Reveal delay={140}>
-                            <p className="mt-7 max-w-2xl text-lg font-light leading-relaxed text-mist">
-                                From AI-powered school report systems to complex enterprise
-                                platforms, we build technology that transforms how organizations
-                                operate.
-                            </p>
-                        </Reveal>
+                    {/* right column: 6 concrete value pillars */}
+                    <div className="lg:col-span-7">
+                        <div className="grid gap-6 sm:grid-cols-2">
+                            {WHY_US.map((item, idx) => (
+                                <Reveal key={item.title} delay={idx * 80}>
+                                    <div className="group relative flex h-full flex-col justify-between border border-thread bg-panel/30 p-6 md:p-7 transition-all duration-300 hover:border-jade/40 hover:bg-panel/60">
+                                        <div>
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-copper group-hover:text-jade transition-colors">
+                                                    {WHY_US_ICONS[idx % WHY_US_ICONS.length]}
+                                                </span>
+                                                <span className="font-mono text-xs text-mist/50">
+                                                    0{idx + 1}
+                                                </span>
+                                            </div>
 
-                        {/* <div className="mt-16 grid grid-cols-1 gap-10 border-t border-thread pt-10 sm:grid-cols-3 sm:gap-6">
-                            {STATS.map((s, i) => (
-                                <StatItem key={s.label} {...s} delay={i * 130} />
+                                            <h3 className="mt-5 font-display text-xl font-bold text-bone">
+                                                {item.title}
+                                            </h3>
+                                            <p className="mt-3 text-sm font-light leading-relaxed text-mist">
+                                                {item.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-6 border-t border-thread/50 pt-3">
+                                            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-jade">
+                                                Core Standard
+                                            </span>
+                                        </div>
+                                    </div>
+                                </Reveal>
                             ))}
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

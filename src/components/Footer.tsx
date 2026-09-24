@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FOOTER_SERVICES, NAV_LINKS, WeaveMark } from "../lib/data";
+import { FOOTER_SERVICES, NAV_LINKS, SOCIALS, WeaveMark } from "../lib/data";
 import { ArrowIcon } from "./shared";
 
 function WatermarkMarquee() {
@@ -14,7 +14,7 @@ function WatermarkMarquee() {
                             WebkitTextStroke: "1px rgba(236,231,216,0.14)",
                         }}
                     >
-                        INNOWEAVE TECH
+                        INNOWEVE TECH
                     </span>
                     <svg viewBox="0 0 12 12" className="h-4 w-4 shrink-0" aria-hidden="true">
                         <rect x="2.5" y="2.5" width="7" height="7" transform="rotate(45 6 6)" fill="var(--color-copper)" opacity="0.6" />
@@ -48,34 +48,37 @@ export default function Footer() {
 
             <div className="mx-auto max-w-7xl px-5 pt-16 md:px-8">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
+                    {/* brand & socials */}
                     <div className="lg:col-span-4">
                         <a href="#home" className="flex w-fit items-center gap-3">
                             <WeaveMark className="h-10 w-10" />
                             <span className="font-display text-xl font-bold text-bone">
-                                Innoweave<span className="text-copper">Tech</span>
+                                Innoweve<span className="text-copper">Tech</span>
                             </span>
                         </a>
                         <p className="mt-5 max-w-xs font-light leading-relaxed text-mist">
-                            Weaving innovation into technology to empower businesses
-                            worldwide.
+                            Custom software for businesses that want to work smarter. We turn manual workflows into connected systems.
                         </p>
-                        {/* <div className="mt-7 flex gap-3">
+                        <div className="mt-6 flex gap-3">
                             {SOCIALS.map((s) => (
                                 <a
                                     key={s.label}
-                                    href="#home"
+                                    href={s.href}
                                     aria-label={s.label}
-                                    className="flex h-11 w-11 items-center justify-center border border-thread text-mist transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:bg-copper hover:text-ink notch-sm"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex h-10 w-10 items-center justify-center border border-thread text-mist transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:bg-copper hover:text-ink notch-sm"
                                 >
                                     {s.icon}
                                 </a>
                             ))}
-                        </div> */}
+                        </div>
                     </div>
 
+                    {/* navigation */}
                     <div className="lg:col-span-2">
                         <h4 className="font-mono text-[10px] uppercase tracking-[0.28em] text-copper">
-                            Quick Links
+                            Navigation
                         </h4>
                         <ul className="mt-5 space-y-3">
                             {NAV_LINKS.map((l) => (
@@ -91,9 +94,10 @@ export default function Footer() {
                         </ul>
                     </div>
 
+                    {/* what we build */}
                     <div className="lg:col-span-3">
                         <h4 className="font-mono text-[10px] uppercase tracking-[0.28em] text-copper">
-                            Services
+                            What We Build
                         </h4>
                         <ul className="mt-5 space-y-3">
                             {FOOTER_SERVICES.map((s) => (
@@ -109,17 +113,18 @@ export default function Footer() {
                         </ul>
                     </div>
 
+                    {/* newsletter */}
                     <div className="lg:col-span-3">
                         <h4 className="font-mono text-[10px] uppercase tracking-[0.28em] text-copper">
                             Stay Updated
                         </h4>
                         <p className="mt-5 font-light text-mist">
-                            Subscribe for insights on technology and AI.
+                            Subscribe for insights on custom software, workflow automation, and technology strategy.
                         </p>
                         {subscribed ? (
                             <p className="mt-5 flex items-center gap-2.5 font-mono text-xs text-jade">
                                 <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-jade" />
-                                Subscribed — welcome to the weave.
+                                Subscribed — thank you.
                             </p>
                         ) : (
                             <form className="mt-5 flex items-end gap-3" onSubmit={onSubscribe}>
@@ -130,7 +135,7 @@ export default function Footer() {
                                     id="newsletter-email"
                                     type="email"
                                     required
-                                    placeholder="Your email"
+                                    placeholder="Your work email"
                                     className="field text-sm"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -138,7 +143,7 @@ export default function Footer() {
                                 <button
                                     type="submit"
                                     aria-label="Subscribe"
-                                    className="notch-sm flex h-11 w-11 shrink-0 items-center justify-center bg-copper text-ink transition-colors duration-300 hover:bg-bone"
+                                    className="notch-sm flex h-11 w-11 shrink-0 items-center justify-center bg-copper text-ink transition-colors duration-300 hover:bg-bone cursor-pointer"
                                 >
                                     <ArrowIcon className="h-4 w-4" />
                                 </button>
@@ -147,17 +152,20 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* bottom copyright & policies */}
                 <div className="mt-14 flex flex-wrap items-center justify-between gap-5 border-t border-thread py-7">
                     <p className="font-mono text-[11px] tracking-[0.14em] text-mist">
-                        © 2026 Innoweave Tech. All rights reserved.
+                        © 2026 InnoweveTech. All rights reserved.
                     </p>
-                    <p className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-mist/60 md:block">
-                        Warp · Weft · System
-                    </p>
+                    <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-mist/60">
+                        <a href="#contact" className="hover:text-bone transition-colors">Privacy Policy</a>
+                        <span>·</span>
+                        <a href="#contact" className="hover:text-bone transition-colors">Terms of Service</a>
+                    </div>
                     <a
                         href="#home"
                         aria-label="Back to top"
-                        className="flex h-11 w-11 items-center justify-center border border-thread text-mist transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:text-copper"
+                        className="flex h-10 w-10 items-center justify-center border border-thread text-mist transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:text-copper"
                     >
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                             <path d="M12 19V5M6 11l6-6 6 6" />

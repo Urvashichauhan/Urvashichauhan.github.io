@@ -2,10 +2,18 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
-import About from "./components/About";
+import Problem from "./components/Problem";
+import Transformation from "./components/Transformation";
 import Services from "./components/Services";
-import CaseStudy from "./components/CaseStudy";
+import Industries from "./components/Industries";
 import Work from "./components/Work";
+// import TechStack from "./components/TechStack";
+import About from "./components/About";
+import Process from "./components/Process";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import FinalCTA from "./components/FinalCTA";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -55,17 +63,25 @@ function AmbientBackground() {
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-pine font-body text-bone antialiased">
+    <div className="relative min-h-screen bg-pine font-body text-bone antialiased selection:bg-jade selection:text-ink">
       <AmbientBackground />
       <ScrollThread />
       <Header />
       <main className="relative z-10">
         <Hero />
         <Marquee />
-        <About />
+        <Problem />
+        <Transformation />
         <Services />
-        <CaseStudy />
+        <Industries />
         <Work />
+        {/* <TechStack /> */}
+        <About />
+        <Process />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+        <FinalCTA />
         <Contact />
       </main>
       <div className="relative z-10">

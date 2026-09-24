@@ -1,38 +1,44 @@
 import { useState } from "react";
-import { SERVICES, SERVICE_ICONS } from "../lib/data";
+import { SOLUTIONS, SOLUTION_ICONS } from "../lib/data";
 import { PlusIcon, Reveal, SectionTag } from "./shared";
 
 export default function Services() {
     const [openIdx, setOpenIdx] = useState<number | null>(0);
 
     return (
-        <section id="services" className="relative bg-ink py-28 md:py-36">
-            <div className="weave-cross pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-40" aria-hidden="true" />
+        <section id="services" className="relative py-28 md:py-36">
+            <div className="weave-grid pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
             <div className="relative mx-auto max-w-7xl px-5 md:px-8">
                 <div className="grid items-end gap-8 lg:grid-cols-12">
                     <div className="lg:col-span-8">
                         <Reveal>
-                            <SectionTag index="02">What We Do</SectionTag>
+                            <SectionTag>What We Build</SectionTag>
                             <h2 className="mt-6 max-w-2xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-bone md:text-5xl">
-                                Services built around <span className="text-jade">your needs.</span>
+                                What Can We Build <span className="text-jade">For You?</span>
                             </h2>
+                        </Reveal>
+                        <Reveal delay={100}>
+                            <p className="mt-5 max-w-xl text-lg font-light leading-relaxed text-mist">
+                                We don't sell one-size-fits-all software. We build systems around
+                                your actual workflow.
+                            </p>
                         </Reveal>
                     </div>
                     <Reveal delay={150} className="lg:col-span-4">
                         <div className="flex items-center gap-4 lg:justify-end">
                             <span className="stitch-x h-[2px] w-12 text-thread" aria-hidden="true" />
                             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-mist">
-                                06 disciplines / one fabric
+                                08 solutions / one system
                             </p>
                         </div>
                     </Reveal>
                 </div>
 
                 <div className="mt-16 border-t border-thread">
-                    {SERVICES.map((s, i) => {
+                    {SOLUTIONS.map((s, i) => {
                         const open = openIdx === i;
                         return (
-                            <Reveal key={s.n} delay={i * 60}>
+                            <Reveal key={s.n} delay={i * 50}>
                                 <div
                                     className={`border-b border-thread transition-colors duration-400 ${open ? "bg-panel/50" : "hover:bg-panel/30"
                                         }`}
@@ -50,7 +56,7 @@ export default function Services() {
                                             {s.n}
                                         </span>
                                         <span
-                                            className={`font-display text-xl font-bold tracking-tight transition-all duration-500 sm:text-2xl md:text-4xl ${open ? "translate-x-2 text-jade" : "text-bone group-hover:translate-x-2 group-hover:text-bone"
+                                            className={`font-display text-xl font-bold tracking-tight transition-all duration-500 sm:text-2xl md:text-3xl ${open ? "translate-x-2 text-jade" : "text-bone group-hover:translate-x-2 group-hover:text-bone"
                                                 }`}
                                         >
                                             {s.title}
@@ -61,7 +67,7 @@ export default function Services() {
                                                     : "border-thread text-mist group-hover:border-copper group-hover:text-copper"
                                                 }`}
                                         >
-                                            {SERVICE_ICONS[s.icon]}
+                                            {SOLUTION_ICONS[s.n]}
                                         </span>
                                         <span
                                             className={`flex h-9 w-9 items-center justify-center border transition-all duration-400 ${open
@@ -79,11 +85,21 @@ export default function Services() {
                                                 <p className="max-w-2xl text-lg font-light leading-relaxed text-mist">
                                                     {s.desc}
                                                 </p>
+                                                <div className="mt-5 flex flex-wrap gap-2">
+                                                    {s.examples.map((ex) => (
+                                                        <span
+                                                            key={ex}
+                                                            className="border border-thread bg-panel/40 px-3 py-1.5 font-mono text-[11px] text-bone/80"
+                                                        >
+                                                            {ex}
+                                                        </span>
+                                                    ))}
+                                                </div>
                                                 <a
                                                     href="#contact"
-                                                    className="link-stitch mt-5 inline-block font-mono text-[11px] uppercase tracking-[0.24em] text-copper"
+                                                    className="link-stitch mt-6 inline-block font-mono text-[11px] uppercase tracking-[0.24em] text-copper"
                                                 >
-                                                    Discuss this capability →
+                                                    Discuss this solution →
                                                 </a>
                                             </div>
                                         </div>

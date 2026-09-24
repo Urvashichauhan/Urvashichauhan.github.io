@@ -74,7 +74,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
-/* notched corners — a thread cut, the house shape */
+/* notched corners */
 .notch {
   clip-path: polygon(0 0,
       calc(100% - 16px) 0,
@@ -93,7 +93,7 @@ body {
       0 calc(100% - 9px));
 }
 
-/* stitch dashed rule — reads like a seam */
+/* stitch dashed rule */
 .stitch-x {
   background-image: repeating-linear-gradient(90deg,
       currentColor 0 9px,
@@ -103,7 +103,7 @@ body {
   background-position: 0 center;
 }
 
-/* underline that sews itself in on hover */
+/* underline on hover */
 .link-stitch {
   background-image: repeating-linear-gradient(90deg,
       var(--color-copper) 0 8px,
@@ -289,6 +289,129 @@ body {
   animation: scroll-line 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
+/* ---------- NEW: workflow node animation ---------- */
+
+@keyframes node-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.node-enter {
+  animation: node-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* ---------- NEW: glow pulse for hero visual ---------- */
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(30px);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* ---------- NEW: process connector line ---------- */
+
+@keyframes line-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.line-grow {
+  transform-origin: top;
+  animation: line-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---------- NEW: counter animate ---------- */
+
+@keyframes counter-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.counter-pop {
+  animation: counter-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* ---------- NEW: slide animations ---------- */
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: none; }
+}
+
+.slide-left {
+  animation: slide-in-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.slide-right {
+  animation: slide-in-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* ---------- NEW: workflow arrow connector ---------- */
+
+.workflow-arrow {
+  position: relative;
+}
+
+.workflow-arrow::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 14px;
+  background: var(--color-thread);
+}
+
+.workflow-arrow:last-child::after {
+  display: none;
+}
+
+/* horizontal workflow connector */
+.workflow-arrow-h {
+  position: relative;
+}
+
+.workflow-arrow-h::after {
+  content: "→";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-mist);
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.workflow-arrow-h:last-child::after {
+  display: none;
+}
+
 /* ---------- accordion ---------- */
 
 .acc-body {
@@ -329,6 +452,146 @@ body {
   border-color: var(--color-jade);
 }
 
+/* select field styling */
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2393b8ab' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 12px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+select.field option {
+  background: var(--color-ink);
+  color: var(--color-bone);
+}
+
+/* ---------- NEW: solution card hover ---------- */
+
+.solution-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease,
+              background-color 0.4s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(63, 217, 162, 0.3);
+  background-color: rgba(13, 53, 44, 0.7);
+}
+
+/* ---------- NEW: project card hover ---------- */
+
+.project-card {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- NEW: industry card ---------- */
+
+.industry-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 162, 75, 0.4);
+}
+
+/* ---------- NEW: process step connector ---------- */
+
+.process-connector {
+  position: relative;
+}
+
+.process-connector::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 48px;
+  bottom: -8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--color-jade), var(--color-thread));
+}
+
+.process-connector:last-child::before {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .process-connector::before {
+    left: 50%;
+    top: auto;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    right: -100%;
+    top: 24px;
+    background: linear-gradient(to right, var(--color-jade), var(--color-thread));
+  }
+}
+
+/* ---------- fade-up & workflow-node animations ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes workflow-node {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(63, 217, 162, 0.4);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 16px 2px rgba(63, 217, 162, 0.2);
+  }
+}
+
+.workflow-node-pulse {
+  animation: workflow-node 3.5s ease-in-out infinite;
+}
+
+/* ---------- pricing & FAQ cards ---------- */
+
+.pricing-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease,
+              background-color 0.4s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 162, 75, 0.4);
+}
+
+.faq-card {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.faq-card:hover {
+  border-color: rgba(63, 217, 162, 0.35);
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -365,7 +628,21 @@ body {
   .kenburns,
   .floaty,
   .weft-glow,
-  .scroll-line-anim {
+  .scroll-line-anim,
+  .glow-pulse,
+  .node-enter,
+  .slide-left,
+  .slide-right,
+  .line-grow,
+  .counter-pop {
     animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .solution-card:hover,
+  .project-card:hover,
+  .industry-card:hover {
+    transform: none;
   }
 }
