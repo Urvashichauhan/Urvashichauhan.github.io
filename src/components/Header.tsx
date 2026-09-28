@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NAV_LINKS, SECTION_IDS, WeaveMark } from "../lib/data";
+import { NAV_LINKS, SECTION_IDS } from "../lib/data";
 import { useScrolled, useScrollSpy } from "../lib/hooks";
 
 export default function Header() {
@@ -23,10 +23,14 @@ export default function Header() {
                     }`}
             >
                 <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-                    <a href="#home" className="group flex items-center gap-3" aria-label="InnoweveTech — home">
-                        <WeaveMark className="h-10 w-10 transition-transform duration-500 group-hover:rotate-90" />
+                    <a href="#home" className="group flex items-center gap-3" aria-label="InnoweaveTech — home">
+                        <img
+                            src="/images/logo.png"
+                            alt="InnoweaveTech Logo"
+                            className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
                         <span className="font-display text-xl font-bold tracking-tight text-bone">
-                            Innoweve<span className="text-copper">Tech</span>
+                            Innoweave<span className="text-copper">Tech</span>
                         </span>
                     </a>
 

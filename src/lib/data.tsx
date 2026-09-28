@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 /* ------------------------------------------------------------------ */
-/*  All site copy — InnoweveTech: client acquisition website           */
+/*  All site copy — InnoweaveTech: client acquisition website           */
 /* ------------------------------------------------------------------ */
 
 export const NAV_LINKS = [

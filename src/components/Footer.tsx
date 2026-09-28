@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FOOTER_SERVICES, NAV_LINKS, SOCIALS, WeaveMark } from "../lib/data";
+import { FOOTER_SERVICES, NAV_LINKS, SOCIALS } from "../lib/data";
 import { ArrowIcon } from "./shared";
 
 function WatermarkMarquee() {
@@ -14,7 +14,7 @@ function WatermarkMarquee() {
                             WebkitTextStroke: "1px rgba(236,231,216,0.14)",
                         }}
                     >
-                        INNOWEVE TECH
+                        INNOWEAVE TECH
                     </span>
                     <svg viewBox="0 0 12 12" className="h-4 w-4 shrink-0" aria-hidden="true">
                         <rect x="2.5" y="2.5" width="7" height="7" transform="rotate(45 6 6)" fill="var(--color-copper)" opacity="0.6" />
@@ -50,10 +50,14 @@ export default function Footer() {
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
                     {/* brand & socials */}
                     <div className="lg:col-span-4">
-                        <a href="#home" className="flex w-fit items-center gap-3">
-                            <WeaveMark className="h-10 w-10" />
+                        <a href="#home" className="group flex w-fit items-center gap-3">
+                            <img
+                                src="/images/logo.png"
+                                alt="InnoweaveTech Logo"
+                                className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                            />
                             <span className="font-display text-xl font-bold text-bone">
-                                Innoweve<span className="text-copper">Tech</span>
+                                Innoweave<span className="text-copper">Tech</span>
                             </span>
                         </a>
                         <p className="mt-5 max-w-xs font-light leading-relaxed text-mist">
@@ -155,7 +159,7 @@ export default function Footer() {
                 {/* bottom copyright & policies */}
                 <div className="mt-14 flex flex-wrap items-center justify-between gap-5 border-t border-thread py-7">
                     <p className="font-mono text-[11px] tracking-[0.14em] text-mist">
-                        © 2026 InnoweveTech. All rights reserved.
+                        © 2026 InnoweaveTech. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-mist/60">
                         <a href="#contact" className="hover:text-bone transition-colors">Privacy Policy</a>

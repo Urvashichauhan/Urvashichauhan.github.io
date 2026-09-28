@@ -157,7 +157,7 @@ export default function Hero() {
                     <Reveal delay={350}>
                         <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist">
                             From business dashboards and management systems to mobile apps and
-                            automation — InnoweveTech turns manual workflows into software
+                            automation — InnoweaveTech turns manual workflows into software
                             designed around the way your business works.
                         </p>
                     </Reveal>

@@ -8,7 +8,7 @@ const PARTNERSHIPS = [
         impact: "70% reduction in manual data entry time",
     },
     {
-        quote: "Off-the-shelf SaaS tools charged per user and still didn't fit our custom appointment workflow. InnoweveTech built a system that matched how our technicians actually work.",
+        quote: "Off-the-shelf SaaS tools charged per user and still didn't fit our custom appointment workflow. InnoweaveTech built a system that matched how our technicians actually work.",
         role: "Managing Partner",
         industry: "Professional Services & Booking",
         impact: "Automated dispatch & zero double-bookings",

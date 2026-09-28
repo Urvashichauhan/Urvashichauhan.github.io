@@ -1,10 +1,19 @@
 import { TICKER_ITEMS } from "../lib/data";
 
-function Row() {
+// Repeat items so each row comfortably exceeds ultra-wide screen widths,
+// guaranteeing an infinite, seamless continuous circular loop with no gaps.
+const REPEATED_ITEMS = [
+    ...TICKER_ITEMS,
+    ...TICKER_ITEMS,
+    ...TICKER_ITEMS,
+    ...TICKER_ITEMS,
+];
+
+function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
     return (
-        <>
-            {TICKER_ITEMS.map((item) => (
-                <span key={item} className="flex items-center">
+        <div className="flex shrink-0 items-center" aria-hidden={ariaHidden || undefined}>
+            {REPEATED_ITEMS.map((item, idx) => (
+                <span key={`${item}-${idx}`} className="flex shrink-0 items-center">
                     <span className="whitespace-nowrap px-7 font-display text-lg font-semibold text-bone/80 md:text-xl">
                         {item}
                     </span>
@@ -13,7 +22,7 @@ function Row() {
                     </svg>
                 </span>
             ))}
-        </>
+        </div>
     );
 }
 
@@ -24,13 +33,9 @@ export default function Marquee() {
             aria-label="Capabilities ticker"
         >
             <div className="weave-cross pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
-            <div className="marquee-track relative">
-                <div className="flex items-center">
-                    <Row />
-                </div>
-                <div className="flex items-center" aria-hidden="true">
-                    <Row />
-                </div>
+            <div className="marquee-track relative flex" style={{ animationDuration: "50s" }}>
+                <Row />
+                <Row ariaHidden={true} />
             </div>
         </section>
     );

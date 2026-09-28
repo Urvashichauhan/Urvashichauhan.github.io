@@ -49,7 +49,7 @@ export default function About() {
                     <div className="lg:col-span-5">
                         <div className="lg:sticky lg:top-28">
                             <Reveal>
-                                <SectionTag>Why InnoweveTech</SectionTag>
+                                <SectionTag>Why InnoweaveTech</SectionTag>
                                 <h2 className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-bone md:text-5xl">
                                     Software built around{" "}
                                     <span className="text-jade">how your team actually works.</span>
