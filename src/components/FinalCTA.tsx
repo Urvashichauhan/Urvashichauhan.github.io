@@ -1,67 +1,51 @@
-import { ArrowIcon, Reveal, SectionTag } from "./shared";
+import { ArrowIcon, Reveal } from "./shared";
 
 export default function FinalCTA() {
-    return (
-        <section className="relative overflow-hidden py-28 md:py-36 border-t border-thread bg-ink">
-            {/* background radial aura and weave grid */}
-            <div
-                className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
-                style={{
-                    background: "radial-gradient(circle, var(--color-jade) 0%, var(--color-copper) 60%, transparent 80%)",
-                }}
-                aria-hidden="true"
-            />
-            <div className="weave-cross pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+  return (
+    <section className="relative overflow-hidden bg-white py-28 sm:py-36 border-t border-[#E8E8E8]">
+      <div className="bg-tech-dots pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
 
-            <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-                <Reveal>
-                    <SectionTag>Let's Get Started</SectionTag>
-                    <h2 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-bone md:text-6xl">
-                        Have a Business Problem That Should Be <span className="text-copper">Software?</span>
-                    </h2>
-                </Reveal>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 text-center">
+        <Reveal>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E8E8E8] bg-[#FAFAF8] px-3.5 py-1.5 font-mono text-xs text-[#666666]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#0062FF]" />
+            <span>Ready for Production</span>
+          </div>
 
-                <Reveal delay={100}>
-                    <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-mist md:text-xl">
-                        Stop losing hours to manual spreadsheets, double entries, and disjointed WhatsApp threads. Let’s build a modern, dependable system tailored to your team.
-                    </p>
-                </Reveal>
+          <h2 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#111111] sm:text-6xl lg:text-7xl">
+            Have a product in mind?
+          </h2>
 
-                <Reveal delay={180}>
-                    <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center gap-3 border border-copper bg-copper px-8 py-4 font-mono text-xs uppercase tracking-[0.2em] text-ink font-semibold transition-all hover:bg-copper/90 hover:shadow-[0_0_24px_rgba(232,162,75,0.4)]"
-                        >
-                            Start Your Project
-                            <ArrowIcon className="h-4 w-4" />
-                        </a>
-                        <a
-                            href="#solutions"
-                            className="inline-flex items-center gap-2 border border-thread bg-panel/40 px-8 py-4 font-mono text-xs uppercase tracking-[0.2em] text-bone transition-colors hover:border-jade hover:text-jade"
-                        >
-                            Explore Solutions
-                        </a>
-                    </div>
-                </Reveal>
+          <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl font-normal text-[#666666]">
+            Let’s turn your idea into something real.
+          </p>
 
-                <Reveal delay={250}>
-                    <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-mist/70 font-mono text-xs uppercase tracking-[0.18em]">
-                        <span className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-jade" />
-                            No Sales Pressure
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-copper" />
-                            Direct Engineer Discussion
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-jade" />
-                            Free Initial Scoping Call
-                        </span>
-                    </div>
-                </Reveal>
-            </div>
-        </section>
-    );
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-md bg-[#0062FF] px-8 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-[#0050D8] hover:shadow-lg hover:translate-y-[-1px]"
+            >
+              <span>Start a Project</span>
+              <ArrowIcon className="h-4 w-4" />
+            </a>
+
+            <a
+              href="mailto:support@innoweavetech.in"
+              className="inline-flex items-center gap-2 rounded-md border border-[#E8E8E8] bg-[#FAFAF8] px-8 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#111111] transition-all duration-200 hover:border-[#111111] hover:bg-white"
+            >
+              <span>Email Engineering Directly</span>
+            </a>
+          </div>
+
+          <div className="mt-12 flex items-center justify-center gap-6 font-mono text-xs text-[#999999]">
+            <span>✓ Response within 24 hours</span>
+            <span>·</span>
+            <span>✓ Technical scoping included</span>
+            <span>·</span>
+            <span>✓ Non-disclosure protected</span>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
 }

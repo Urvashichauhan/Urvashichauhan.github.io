@@ -1,588 +1,402 @@
-import type { ReactNode } from "react";
-
 /* ------------------------------------------------------------------ */
-/*  All site copy — InnoweaveTech: client acquisition website           */
+/*  InnoweaveTech — Modern Minimal Product & Engineering Platform       */
 /* ------------------------------------------------------------------ */
 
-export const NAV_LINKS = [
-    { id: "home", label: "Home" },
-    { id: "solutions", label: "Solutions" },
-    { id: "services", label: "Services" },
-    { id: "work", label: "Work" },
-    { id: "process", label: "Process" },
-    { id: "about", label: "About" },
-    { id: "contact", label: "Contact" },
-] as const;
+export interface NavLink {
+  id: string;
+  label: string;
+}
 
-export const SECTION_IDS = NAV_LINKS.map((l) => l.id);
-
-/* ---------- hero trust line ---------- */
-
-export const HERO_CAPABILITIES = [
-    "Web Applications",
-    "Mobile Apps",
-    "Business Systems",
-    "Automation",
-    "APIs",
+export const NAV_LINKS: NavLink[] = [
+  { id: "work", label: "Work" },
+  { id: "capabilities", label: "Capabilities" },
+  { id: "ai", label: "AI & Automation" },
+  // { id: "technology", label: "Technology" },
+  { id: "about", label: "About" },
+  { id: "process", label: "Process" },
+  { id: "contact", label: "Contact" },
 ];
 
-/* ---------- marquee / ticker ---------- */
+export const COMPANY_INFO = {
+  name: "InnoweaveTech",
+  domain: "innoweavetech.in",
+  headline: "Build software that moves your business forward.",
+  subheadline:
+    "We design and build web applications, mobile products, AI-powered systems and scalable digital platforms for ambitious businesses.",
+  statement: "We turn ideas into reliable digital products.",
+  statementDesc:
+    "InnoweaveTech partners with business leaders and product teams to engineer resilient web applications, mobile products, AI systems, business platforms, APIs, GIS solutions, and cloud infrastructure.",
+  email: "support@innoweavetech.in",
+  phones: ["+91 9760296577", "+91 6397548014"],
+  address: "D-238,239 2nd Floor, Nawada Housing Complex, Dwarka Mod, New Delhi - 110059",
+  founded: "2024",
+  copyright: `© ${new Date().getFullYear()} InnoweaveTech. All rights reserved.`,
+};
 
-export const TICKER_ITEMS = [
-    "Web Applications",
-    "Mobile Apps",
-    "Business Dashboards",
-    "Automation",
-    "APIs",
-    "Custom Software",
+/* ---------- Capabilities ("From idea → to production") ---------- */
+
+export interface CapabilityItem {
+  id: string;
+  number: string;
+  title: string;
+  tagline: string;
+  description: string;
+  techIndicators: string[];
+}
+
+export const CAPABILITIES: CapabilityItem[] = [
+  {
+    id: "web",
+    number: "01",
+    title: "WEB APPLICATIONS",
+    tagline: "High-performance digital products",
+    description: "Scalable, responsive web platforms designed around real business workflows.",
+    techIndicators: ["React", "Next.js", "TypeScript", "Modern Web Architecture"],
+  },
+  {
+    id: "ai",
+    number: "02",
+    title: "AI & AUTOMATION",
+    tagline: "Autonomous workflows & agents",
+    description: "Intelligent workflows, AI agents and automation systems that reduce repetitive work.",
+    techIndicators: ["LLM Agents", "RAG Pipelines", "Tool Calling", "Workflow Automation"],
+  },
+  {
+    id: "mobile",
+    number: "03",
+    title: "MOBILE APPLICATIONS",
+    tagline: "Native-grade iOS & Android",
+    description: "Fast, reliable mobile experiences for iOS and Android.",
+    techIndicators: ["React Native", "Cross-Platform", "Offline Sync", "Push Architecture"],
+  },
+  {
+    id: "business-systems",
+    number: "04",
+    title: "BUSINESS SYSTEMS",
+    tagline: "Core operational backbones",
+    description: "Custom dashboards, management systems and internal platforms built around your operations.",
+    techIndicators: ["ERP Platforms", "RBAC Security", "Audit Ledgers", "Operations Hubs"],
+  },
+  {
+    id: "apis",
+    number: "05",
+    title: "APIs & BACKEND",
+    tagline: "Resilient backend services",
+    description: "Secure, scalable APIs and backend systems that power modern digital products.",
+    techIndicators: ["FastAPI", "Python", "Laravel", "REST & WebSockets"],
+  },
+  {
+    id: "cloud",
+    number: "06",
+    title: "CLOUD & DEVOPS",
+    tagline: "Zero-downtime reliability",
+    description: "Production-ready infrastructure, deployment pipelines and cloud environments.",
+    techIndicators: ["Docker", "CI/CD Pipelines", "Containerization", "Cloud Deployments"],
+  },
+  {
+    id: "gis",
+    number: "07",
+    title: "GIS & DATA PLATFORMS",
+    tagline: "Geospatial & location intelligence",
+    description: "Location intelligence, mapping systems and spatial data platforms powered by modern GIS technologies.",
+    techIndicators: ["PostGIS", "Spatial Querying", "Boundary Mapping", "Vector Tiles"],
+  },
 ];
 
-/* ---------- problem section ---------- */
+/* ---------- Projects Showcase ---------- */
 
-export const PROBLEMS = [
-    {
-        icon: "repeat",
-        title: "Too Much Manual Work",
-        desc: "Employees repeatedly enter and transfer the same information across tools.",
-    },
-    {
-        icon: "scatter",
-        title: "Disconnected Data",
-        desc: "Important information is spread across Excel, WhatsApp, emails and paper.",
-    },
-    {
-        icon: "dashboard",
-        title: "No Central Dashboard",
-        desc: "Managers don't have one place to see what's happening across the business.",
-    },
-    {
-        icon: "report",
-        title: "Difficult Reporting",
-        desc: "Reports require manual compilation from multiple disconnected sources.",
-    },
-    {
-        icon: "comm",
-        title: "Communication Gaps",
-        desc: "Customers and employees don't have a clear workflow or status tracking.",
-    },
-    {
-        icon: "scale",
-        title: "Growing Complexity",
-        desc: "The process worked when the business was small but doesn't scale anymore.",
-    },
+export interface ProjectItem {
+  id: string;
+  number: string;
+  category: string;
+  title: string;
+  tech: string;
+  techStack: string[];
+  summary: string;
+  problem: string;
+  solution: string;
+  highlights: string[];
+  architecture: string[];
+}
+
+export const SHOWCASE_PROJECTS: ProjectItem[] = [
+  {
+    id: "compliance",
+    number: "01",
+    category: "ENVIRONMENTAL & SENSOR TELEMETRY",
+    title: "Environmental Compliance Platform",
+    tech: "Web + Mobile + API",
+    techStack: ["React", "TypeScript", "FastAPI / Python", "PostgreSQL", "WebSockets", "IoT Telemetry"],
+    summary:
+      "A multi-facility compliance and verification platform monitoring industrial effluent parameters, emission thresholds, laboratory assays, and statutory regulatory filings in real time.",
+    problem:
+      "Plant managers and environmental officers tracked pollution parameters using paper registers and disconnected Excel spreadsheets, causing delayed breach warnings and high regulatory audit risk.",
+    solution:
+      "Engineered an automated monitoring platform connecting facility IoT sensors directly to an alerting engine, supporting multi-tier laboratory approvals and automated statutory report compilation.",
+    highlights: [
+      "Real-time sensor telemetry with automatic threshold breach alerts",
+      "Multi-role audit workflow with digital sign-off and tamper-evident logs",
+      "Automated environmental agency statutory report generation (PDF & CSV)",
+      "Mobile companion app for field inspectors conducting on-site sampling",
+    ],
+    architecture: [
+      "FastAPI streaming ingestion endpoint with 99.98% uptime",
+      "Time-series sensor telemetry storage optimized for rapid historical queries",
+      "WebSocket push channel for instant emergency parameter notifications",
+      "Strict role-based access control (Operator, Lab Tech, Auditor, Officer)",
+    ],
+  },
+  {
+    id: "business-mgmt",
+    number: "02",
+    category: "ENTERPRISE OPERATIONS & ERP",
+    title: "Business Management Platform",
+    tech: "Laravel + React + PostgreSQL",
+    techStack: ["Laravel", "React", "PostgreSQL", "Redis", "REST APIs", "Tailwind CSS"],
+    summary:
+      "A centralized enterprise platform unifying customer accounts, multi-warehouse inventory, purchase & sales dispatch pipelines, automated billing, and live executive analytics.",
+    problem:
+      "Operational friction was bottlenecking growth: customer requests arrived via phone calls and WhatsApp, inventory status had zero live visibility, and invoices were compiled manually at month-end.",
+    solution:
+      "Built a unified operational dashboard connecting order intake, automated inventory allocation, role-based approvals, dispatch tracking, and financial reconciliation in real time.",
+    highlights: [
+      "Multi-tier dashboard for administrators, warehouse operators, and sales",
+      "Automated stock level tracking with predictive reorder notifications",
+      "Integrated invoice generation, payment reconciliation, and GST compliance",
+      "Real-time business performance analytics and dispatch velocity metrics",
+    ],
+    architecture: [
+      "Robust Laravel backend service with automated queue processing",
+      "PostgreSQL database with indexed relational data integrity",
+      "Redis caching layer ensuring sub-100ms dashboard load times",
+      "Audit trail logging every status change, dispatch, and financial event",
+    ],
+  },
+  {
+    id: "gis-mapping",
+    number: "03",
+    category: "SPATIAL INTELLIGENCE & GIS",
+    title: "GIS / Mapping Platform",
+    tech: "PostGIS + GIS + APIs",
+    techStack: ["PostGIS", "Leaflet / MapLibre", "Python", "Spatial SQL", "GeoJSON", "REST APIs"],
+    summary:
+      "A high-precision geospatial data platform engineered for land parcel demarcation, cadastral boundary verification, coordinate spatial queries, and multi-layer agricultural and asset telemetry.",
+    problem:
+      "Field teams and surveyors struggled with manual survey maps, inaccurate plot boundary demarcation, and slow GIS desktop software incapable of real-time web collaboration.",
+    solution:
+      "Architected a cloud-native spatial intelligence web console leveraging PostGIS for polygon boundary calculations, coordinate projection conversions, and instantaneous plot queries.",
+    highlights: [
+      "Interactive vector map interface with precise parcel boundary polygon overlays",
+      "Sub-second spatial queries calculating area, perimeter, and boundary overlap",
+      "Multi-layer map controls (Satellite imagery, cadastral grid, soil telemetry)",
+      "Field coordinate inspector with GPS waypoint collection and export",
+    ],
+    architecture: [
+      "PostGIS spatial database indexing thousands of multi-polygon geometries",
+      "Dynamic GeoJSON vector tile serving for seamless browser panning and zooming",
+      "Custom spatial query microservice executing boundary intersection tests",
+      "Coordinate transformation engine supporting EPSG:4326 and national projections",
+    ],
+  },
 ];
 
-/* ---------- transformation / before-after ---------- */
+/* ---------- AI Workflow Nodes ---------- */
 
-export const WORKFLOW_BEFORE = [
-    "WhatsApp",
-    "Excel",
-    "Phone Calls",
-    "Paper",
-    "Manual Reports",
+export interface AIWorkflowStep {
+  step: string;
+  label: string;
+  sublabel: string;
+  codeSnippet: string;
+}
+
+export const AI_WORKFLOW_STEPS: AIWorkflowStep[] = [
+  {
+    step: "01",
+    label: "Input / Trigger",
+    sublabel: "Customer request, document upload, or system webhook",
+    codeSnippet: 'trigger: { type: "inbound_event", source: "erp_api", payload: "audit_request" }',
+  },
+  {
+    step: "02",
+    label: "AI Agent",
+    sublabel: "Autonomous agent parses intent, schema & validation bounds",
+    codeSnippet: 'agent: { role: "compliance_evaluator", model: "reasoning-v2", confidence: 0.992 }',
+  },
+  {
+    step: "03",
+    label: "Knowledge Retrieval",
+    sublabel: "Retrieves context from internal vector database & policies",
+    codeSnippet: 'context: { embeddings: "matched_4_chunks", policy_id: "sec-2026-c4", score: 0.94 }',
+  },
+  {
+    step: "04",
+    label: "Business API Execution",
+    sublabel: "Executes verified tool calls against internal databases & APIs",
+    codeSnippet: 'tool_call: { endpoint: "api/v1/compliance/verify", params: { facility_id: "F-108" } }',
+  },
+  {
+    step: "05",
+    label: "Automated Action",
+    sublabel: "Updates system state, dispatches notifications & syncs logs",
+    codeSnippet: 'action: { status: "dispatched", notify: ["ops_lead", "auditor"], ledger: "committed" }',
+  },
+  {
+    step: "06",
+    label: "Result & Response",
+    sublabel: "Verified structured outcome delivered to users & stakeholders",
+    codeSnippet: 'output: { success: true, latency_ms: 184, audit_token: "tx_0x9b4a2e" }',
+  },
 ];
 
-export const WORKFLOW_AFTER = [
-    "Customer",
-    "Dashboard",
-    "Assignment",
-    "Status",
-    "Payment",
-    "Reports",
+/* ---------- Tech Stack Matrix ---------- */
+
+export interface TechItem {
+  name: string;
+  category: "Frontend" | "Backend" | "Data" | "Infrastructure" | "AI & Automation";
+  description: string;
+}
+
+export const TECH_ITEMS: TechItem[] = [
+  { name: "React", category: "Frontend", description: "Modern component-driven web interfaces" },
+  { name: "Next.js", category: "Frontend", description: "SSR, edge delivery & production routing" },
+  { name: "TypeScript", category: "Frontend", description: "Type-safe robust frontend & backend code" },
+  { name: "React Native", category: "Frontend", description: "Cross-platform iOS & Android mobile apps" },
+
+  { name: "Python", category: "Backend", description: "High-performance services & data processing" },
+  { name: "FastAPI", category: "Backend", description: "Modern, asynchronous high-throughput APIs" },
+  { name: "Laravel", category: "Backend", description: "Enterprise PHP framework for complex operations" },
+  { name: "Node.js", category: "Backend", description: "Event-driven microservices & real-time sockets" },
+
+  { name: "PostgreSQL", category: "Data", description: "Primary relational database with high ACID integrity" },
+  { name: "PostGIS", category: "Data", description: "Industry-standard spatial database engine" },
+  { name: "Redis", category: "Data", description: "In-memory caching & low-latency message queues" },
+  { name: "MySQL", category: "Data", description: "Battle-tested relational operational data stores" },
+
+  { name: "Docker", category: "Infrastructure", description: "Containerized reproducible application environments" },
+  { name: "Cloud (AWS / GCP)", category: "Infrastructure", description: "Scalable compute, storage & VPC networks" },
+  { name: "CI / CD Pipelines", category: "Infrastructure", description: "Automated test suites & zero-downtime deploys" },
+  { name: "Linux / Nginx", category: "Infrastructure", description: "Hardened production server architecture" },
+
+  { name: "LLM Orchestration", category: "AI & Automation", description: "Multi-step reasoning & structured outputs" },
+  { name: "AI Agents", category: "AI & Automation", description: "Autonomous task execution with tool calling" },
+  { name: "Workflow Automation", category: "AI & Automation", description: "Event-driven background sync & pipeline automation" },
+  { name: "Embedding & RAG", category: "AI & Automation", description: "Contextual business search & vector retrieval" },
 ];
 
-/* ---------- solutions (what we can build) ---------- */
+/* ---------- Why InnoweaveTech Pillars ---------- */
 
-export const SOLUTIONS = [
-    {
-        n: "01",
-        title: "Business Management Systems",
-        desc: "Centralize customers, employees, operations, approvals, payments and reports in one system.",
-        examples: ["CRM", "Employee management", "Operations management", "Internal business portals"],
-    },
-    {
-        n: "02",
-        title: "Admin Dashboards",
-        desc: "Give your team one place to manage and monitor the business.",
-        examples: ["Analytics dashboards", "Management dashboards", "Reporting systems", "Role-based administration"],
-    },
-    {
-        n: "03",
-        title: "Booking & Appointment Systems",
-        desc: "Replace phone calls and WhatsApp bookings with structured digital workflows.",
-        examples: ["Service bookings", "Appointment systems", "Scheduling", "Employee assignment", "Customer notifications"],
-    },
-    {
-        n: "04",
-        title: "Inventory & Order Management",
-        desc: "Track products, stock, orders, dispatch and reports from one centralized system.",
-        examples: ["Inventory", "Purchase orders", "Sales orders", "Dispatch", "Stock reports"],
-    },
-    {
-        n: "05",
-        title: "Web Applications",
-        desc: "Custom web applications designed specifically for your business.",
-        examples: ["Customer portals", "SaaS applications", "Internal tools", "Workflow systems"],
-    },
-    {
-        n: "06",
-        title: "Mobile Applications",
-        desc: "Bring your business workflow to your customers and employees through mobile apps.",
-        examples: ["Customer apps", "Employee apps", "Delivery apps", "Booking apps", "React Native"],
-    },
-    {
-        n: "07",
-        title: "APIs & Integrations",
-        desc: "Connect your existing systems and services.",
-        examples: ["Payment gateways", "WhatsApp/API integrations", "Third-party APIs", "Email/SMS", "Database integrations"],
-    },
-    {
-        n: "08",
-        title: "Business Automation",
-        desc: "Automate repetitive tasks and reduce manual work.",
-        examples: ["Notifications", "Automated reports", "Workflow automation", "Data synchronization", "Approval workflows"],
-    },
+export const VALUE_PILLARS = [
+  {
+    number: "01",
+    title: "Product thinking",
+    description: "We don't just write code. We think about the product, users and business problem.",
+  },
+  {
+    number: "02",
+    title: "Modern engineering",
+    description: "We use modern frontend, backend, cloud and AI technologies.",
+  },
+  {
+    number: "03",
+    title: "Built for real workflows",
+    description: "Our systems are designed around how businesses actually operate.",
+  },
+  {
+    number: "04",
+    title: "From idea to production",
+    description: "We can help move a product from concept through development and deployment.",
+  },
 ];
 
-/* ---------- industries / use cases ---------- */
-
-export const INDUSTRIES = [
-    {
-        name: "Service Businesses",
-        flow: ["Booking", "Employee Assignment", "Service", "Payment", "Reports"],
-    },
-    {
-        name: "Education",
-        flow: ["Students", "Admissions", "Attendance", "Fees", "Reports"],
-    },
-    {
-        name: "Retail & Distribution",
-        flow: ["Customers", "Orders", "Inventory", "Dispatch", "Payment"],
-    },
-    {
-        name: "Manufacturing",
-        flow: ["Inventory", "Production", "Orders", "Dispatch", "Reports"],
-    },
-    {
-        name: "Logistics",
-        flow: ["Orders", "Routing", "Tracking", "Delivery", "Reports"],
-    },
-    {
-        name: "Healthcare",
-        flow: ["Patients", "Appointments", "Records", "Billing", "Reports"],
-    },
-    {
-        name: "Hospitality",
-        flow: ["Bookings", "Rooms/Tables", "Services", "Payment", "Feedback"],
-    },
-    {
-        name: "Startups",
-        flow: ["MVP", "Users", "Analytics", "Iteration", "Scale"],
-    },
-    {
-        name: "Professional Services",
-        flow: ["Clients", "Projects", "Tracking", "Invoicing", "Reports"],
-    },
-];
-
-/* ---------- featured projects ---------- */
-
-export const PROJECTS = [
-    {
-        title: "Horticulture Management System",
-        type: "Client Project",
-        desc: "A multi-role management platform connecting farmer registration, item verification, buyer demands, FPO processing, dispatch, payments and reporting.",
-        problem: "Manual coordination between farmers, buyers and FPOs across multiple regions with paper-based tracking.",
-        workflow: ["Farmer", "Registration", "Verification", "Buyer Demand", "FPO Processing", "Dispatch", "Payment", "Reports"],
-        features: ["Multi-role access", "Farmer registration & verification", "Demand matching", "Dispatch tracking", "Payment management", "Automated reports"],
-        tech: ["React", "Laravel", "MySQL", "REST API"],
-    },
-    {
-        title: "Business Booking Platform",
-        type: "Concept / Demo Project",
-        desc: "A complete service booking system with automated employee assignment, real-time status tracking and payment integration.",
-        problem: "Service businesses managing bookings through phone calls and WhatsApp with no visibility into employee schedules.",
-        workflow: ["Customer", "Booking", "Employee Assignment", "Service", "Payment", "Reports"],
-        features: ["Online booking", "Auto-assignment", "Real-time status", "Payment integration", "Service history", "Analytics"],
-        tech: ["React", "Node.js", "PostgreSQL", "REST API"],
-    },
-    {
-        title: "Inventory Management Platform",
-        type: "Concept / Demo Project",
-        desc: "Centralized inventory tracking with purchase orders, sales orders, dispatch management and automated stock reports.",
-        problem: "Businesses tracking stock in spreadsheets with no real-time visibility into inventory levels or order status.",
-        workflow: ["Products", "Stock", "Orders", "Dispatch", "Reports"],
-        features: ["Stock tracking", "Purchase orders", "Sales orders", "Dispatch management", "Low-stock alerts", "Reports"],
-        tech: ["React", "Laravel", "MySQL", "REST API"],
-    },
-];
-
-/* ---------- tech stack ---------- */
-
-export const TECH_STACK = [
-    { name: "React", category: "Frontend" },
-    { name: "Next.js", category: "Frontend" },
-    { name: "React Native", category: "Mobile" },
-    { name: "Laravel", category: "Backend" },
-    { name: "PHP", category: "Backend" },
-    { name: "CodeIgniter", category: "Backend" },
-    { name: "PostgreSQL", category: "Database" },
-    { name: "MySQL", category: "Database" },
-    { name: "REST APIs", category: "Integration" },
-    { name: "Docker", category: "DevOps" },
-    { name: "Git / GitHub", category: "DevOps" },
-];
-
-/* ---------- why us ---------- */
-
-export const WHY_US = [
-    {
-        title: "Built Around Your Workflow",
-        desc: "We understand the process first and build the software around it.",
-    },
-    {
-        title: "Scalable Architecture",
-        desc: "Build systems that can grow with your business.",
-    },
-    {
-        title: "Web + Mobile",
-        desc: "Build connected experiences across web and mobile.",
-    },
-    {
-        title: "Clear Communication",
-        desc: "Keep requirements, milestones and deliverables clear.",
-    },
-    {
-        title: "Long-Term Support",
-        desc: "Continue supporting and improving the system after launch.",
-    },
-    {
-        title: "Practical Technology",
-        desc: "Use technology that solves the problem rather than adding unnecessary complexity.",
-    },
-];
-
-/* ---------- process steps ---------- */
+/* ---------- Process Steps ---------- */
 
 export const PROCESS_STEPS = [
-    {
-        n: "01",
-        title: "Discover",
-        desc: "Tell us about your business and the problem.",
-    },
-    {
-        n: "02",
-        title: "Understand",
-        desc: "We map your current workflow and identify what can be improved.",
-    },
-    {
-        n: "03",
-        title: "Design",
-        desc: "We create the solution structure, screens and technical plan.",
-    },
-    {
-        n: "04",
-        title: "Build",
-        desc: "We develop, test and iterate with you.",
-    },
-    {
-        n: "05",
-        title: "Launch & Support",
-        desc: "We deploy the system and provide ongoing support.",
-    },
+  {
+    number: "01",
+    title: "Understand",
+    description: "Understand the business problem, map current workflows, and isolate friction points.",
+    deliverable: "Problem analysis & scoping roadmap",
+  },
+  {
+    number: "02",
+    title: "Plan",
+    description: "Define the product, architecture, data schemas, and sprint roadmap.",
+    deliverable: "System architecture & interface wireframes",
+  },
+  {
+    number: "03",
+    title: "Build",
+    description: "Design, develop and test the product in rapid, transparent two-week agile iterations.",
+    deliverable: "Working staging builds with test coverage",
+  },
+  {
+    number: "04",
+    title: "Launch",
+    description: "Deploy to production cloud infrastructure, monitor performance, and continuously improve.",
+    deliverable: "Production deployment & ongoing SLA support",
+  },
 ];
 
-/* ---------- FAQ ---------- */
-
-export const FAQ_ITEMS = [
-    {
-        q: "Can you build software around our existing workflow?",
-        a: "Yes. We first understand the existing workflow and then design the solution around it. The goal is to digitize and improve the way your business already works — not force you into a generic template.",
-    },
-    {
-        q: "Can you build both web and mobile applications?",
-        a: "Yes. We build web applications using React and Next.js, and mobile applications using React Native. Both can share a single backend and API.",
-    },
-    {
-        q: "Can you integrate payment gateways?",
-        a: "Yes, depending on the required payment provider. We've worked with Razorpay, Stripe and other payment systems.",
-    },
-    {
-        q: "Can you integrate APIs and third-party services?",
-        a: "Yes. We can integrate any service that provides an API — including payment gateways, WhatsApp, SMS/email services, maps, analytics and more.",
-    },
-    {
-        q: "Can you maintain an existing Laravel/PHP/React application?",
-        a: "Yes. We can take over existing projects, fix issues, add features and modernize the codebase.",
-    },
-    {
-        q: "Do you work with startups?",
-        a: "Yes. We can help with MVPs as well as production systems. We understand the importance of speed and iterative development for startups.",
-    },
-    {
-        q: "How do we start a project?",
-        a: "Contact us and tell us about the business problem. We'll discuss the requirements, understand your workflow, and outline the next steps — no commitment required for the initial conversation.",
-    },
-];
-
-/* ---------- contact form options ---------- */
+/* ---------- Project Inquiries ---------- */
 
 export const PROJECT_TYPES = [
-    "Business Dashboard",
-    "Web Application",
-    "Mobile Application",
-    "E-commerce",
-    "Booking System",
-    "Inventory System",
-    "CRM",
-    "API / Integration",
-    "Automation",
-    "Existing Application Support",
-    "Not sure yet",
+  "Web Application",
+  "AI & Automation System",
+  "Mobile Application",
+  "Business Management Platform / ERP",
+  "API & Backend System",
+  "GIS / Mapping Platform",
+  "Cloud & DevOps Migration",
+  "Codebase Audit / Modernization",
+  "Not sure yet / Exploratory",
 ];
 
-/* ---------- footer ---------- */
-
-export const FOOTER_SOLUTIONS = [
-    "Business Systems",
-    "Admin Dashboards",
-    "Booking Systems",
-    "Web Applications",
-    "Mobile Apps",
-    "APIs & Automation",
+export const BUDGET_TIERS = [
+  "₹50,000 – ₹1,50,000",
+  "₹1,50,000 – ₹3,50,000",
+  "₹3,50,000 – ₹7,00,000",
+  "₹7,00,000+",
+  "Flexible / Scoping needed",
 ];
 
-export const FOOTER_SERVICES = FOOTER_SOLUTIONS;
-
-/* ---------- SVG icons ---------- */
-
-const stroke = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.5,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-};
-
-export const PROBLEM_ICONS: Record<string, ReactNode> = {
-    repeat: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M17 1l4 4-4 4" />
-            <path d="M3 11V9a4 4 0 0 1 4-4h14" />
-            <path d="M7 23l-4-4 4-4" />
-            <path d="M21 13v2a4 4 0 0 1-4 4H3" />
-        </svg>
-    ),
-    scatter: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <rect x="3" y="3" width="7" height="7" rx="1" />
-            <rect x="14" y="3" width="7" height="7" rx="1" />
-            <rect x="3" y="14" width="7" height="7" rx="1" />
-            <rect x="14" y="14" width="7" height="7" rx="1" />
-        </svg>
-    ),
-    dashboard: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-        </svg>
-    ),
-    report: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-        </svg>
-    ),
-    comm: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-    ),
-    scale: (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-        </svg>
-    ),
-};
-
-export const SOLUTION_ICONS: Record<string, ReactNode> = {
-    "01": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-        </svg>
-    ),
-    "02": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M3.5 4v16h17" />
-            <path d="m6.5 15.5 4-4.5 3.2 2.8 5-6" />
-        </svg>
-    ),
-    "03": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
-        </svg>
-    ),
-    "04": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            <path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12" />
-        </svg>
-    ),
-    "05": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M8.5 6.5 3 12l5.5 5.5" />
-            <path d="M15.5 6.5 21 12l-5.5 5.5" />
-            <path d="m13.2 4.5-2.4 15" />
-        </svg>
-    ),
-    "06": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <rect x="7" y="2" width="10" height="20" rx="2" />
-            <path d="M11 18h2" />
-        </svg>
-    ),
-    "07": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-        </svg>
-    ),
-    "08": (
-        <svg viewBox="0 0 24 24" className="h-6 w-6" {...stroke} aria-hidden="true">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-        </svg>
-    ),
-};
-
-export const CONTACT_ICONS = {
-    pin: (
-        <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" {...stroke} aria-hidden="true">
-            <path d="M12 21.5S5.2 15.8 5.2 10.7a6.8 6.8 0 1 1 13.6 0c0 5.1-6.8 10.8-6.8 10.8z" />
-            <circle cx="12" cy="10.7" r="2.4" />
-        </svg>
-    ),
-    phone: (
-        <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" {...stroke} aria-hidden="true">
-            <path d="M5.5 3.5h3.6L10.8 8 8.4 9.9a12.8 12.8 0 0 0 5.7 5.7l1.9-2.4 4.5 1.7v3.6a1.9 1.9 0 0 1-2.1 1.9A16.9 16.9 0 0 1 3.6 5.6a1.9 1.9 0 0 1 1.9-2.1z" />
-        </svg>
-    ),
-    mail: (
-        <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" {...stroke} aria-hidden="true">
-            <rect x="3" y="5.5" width="18" height="13" rx="1.2" />
-            <path d="m3.6 7 8.4 6 8.4-6" />
-        </svg>
-    ),
-    whatsapp: (
-        <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" {...stroke} aria-hidden="true">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg>
-    ),
-};
-
-export const SOCIALS: { label: string; href: string; icon: ReactNode }[] = [
-    {
-        label: "LinkedIn",
-        href: "#",
-        icon: (
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" {...stroke} aria-hidden="true">
-                <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
-                <path d="M8 11v6M8 7.7v.1M12 17v-3.6a2.3 2.3 0 0 1 4.6 0V17" />
-            </svg>
-        ),
-    },
-    {
-        label: "Instagram",
-        href: "#",
-        icon: (
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" {...stroke} aria-hidden="true">
-                <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
-                <circle cx="12" cy="12" r="3.8" />
-                <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-            </svg>
-        ),
-    },
-    {
-        label: "GitHub",
-        href: "#",
-        icon: (
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" aria-hidden="true">
-                <path
-                    fill="currentColor"
-                    d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"
-                />
-            </svg>
-        ),
-    },
+export const TIMELINE_OPTIONS = [
+  "Next 2 to 4 weeks (Urgent)",
+  "1 to 2 Months",
+  "3+ Months",
+  "Flexible / Research Phase",
 ];
 
-export function WeaveMark({ className = "h-9 w-9" }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-            <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="var(--color-ink)" stroke="var(--color-panel2)" strokeWidth="1.5" />
-            {/* warp */}
-            <path d="M12 7v26M20 7v26M28 7v26" stroke="var(--color-jade)" strokeWidth="2.4" />
-            {/* weft */}
-            <path d="M7 15h26M7 25h26" stroke="var(--color-copper)" strokeWidth="2.4" />
-            {/* over/under passes */}
-            <path d="M20 11.5v7" stroke="var(--color-jade)" strokeWidth="2.4" />
-            <path d="M12 21.5v7M28 21.5v7" stroke="var(--color-jade)" strokeWidth="2.4" />
-        </svg>
-    );
+/* ---------- Frequently Asked Questions ---------- */
+
+export interface FAQItem {
+  q: string;
+  a: string;
 }
 
-export function KnotCheck({ className = "h-5 w-5" }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 20 20" className={className} aria-hidden="true">
-            <rect
-                x="4.1"
-                y="4.1"
-                width="11.8"
-                height="11.8"
-                transform="rotate(45 10 10)"
-                fill="none"
-                stroke="var(--color-copper)"
-                strokeWidth="1.3"
-            />
-            <path
-                d="m6.6 10.4 2.4 2.4 4.6-5.2"
-                fill="none"
-                stroke="var(--color-jade)"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
-    );
-}
-
-export const CASE_FEATURES = [
-    "AI-Generated Student Reports",
-    "Automated Performance Analytics",
-    "Smart Attendance Tracking",
-    "Predictive Student Insights",
+export const FAQ_ITEMS: FAQItem[] = [
+  {
+    q: "Can you build software around our existing business workflow?",
+    a: "Yes. We always map your existing physical and digital operations first. Our goal is to digitize and automate your exact workflow rather than forcing your team into rigid, off-the-shelf software templates.",
+  },
+  {
+    q: "Can you build both web platforms and mobile applications?",
+    a: "Yes. We engineer web applications using React and Next.js, and mobile applications using React Native. Both platforms share a unified backend, PostgreSQL database, and authenticated API layer.",
+  },
+  {
+    q: "Can you modernize or maintain an existing Laravel, Python, or SQL codebase?",
+    a: "Yes. We regularly take over existing legacy codebases, conduct structural security and architecture audits, fix performance bottlenecks, and add modern features without interrupting daily business operations.",
+  },
+  {
+    q: "How do you ensure AI agents and automation execute reliably?",
+    a: "We design deterministic state machines around LLM reasoning. Tool executions and database updates are verified against strict schema boundaries, role permissions, and immutable audit logs before execution.",
+  },
+  {
+    q: "Can you build specialized GIS mapping and spatial analysis platforms?",
+    a: "Yes. We work directly with PostGIS, spatial SQL, vector tiling, and boundary polygon analysis to deliver sub-second geographic calculations and parcel telemetry overlays.",
+  },
+  {
+    q: "How do we initiate a project scoping engagement?",
+    a: "Submit the project scoping form or email us directly. A senior software engineer will review your requirements, schedule a technical discovery call, and provide an architectural roadmap.",
+  },
 ];
-
-export const CHART_DATA = [
-    { label: "Math", v: 65 },
-    { label: "Sci", v: 80 },
-    { label: "Eng", v: 55 },
-    { label: "Art", v: 90 },
-    { label: "Hist", v: 72 },
-];
-
-export function RobotIcon({ className = "h-5 w-5" }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" className={className} {...stroke} aria-hidden="true">
-            <rect x="5" y="9" width="14" height="10" rx="2" />
-            <path d="M12 9V5.8" />
-            <circle cx="12" cy="4.4" r="1.3" />
-            <circle cx="9.2" cy="13.4" r="1.1" fill="currentColor" stroke="none" />
-            <circle cx="14.8" cy="13.4" r="1.1" fill="currentColor" stroke="none" />
-            <path d="M9.4 16.4h5.2" />
-            <path d="M2.8 12.5v3M21.2 12.5v3" />
-        </svg>
-    );
-}
 
